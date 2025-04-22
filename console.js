@@ -100,7 +100,6 @@ m.mtype === "messageContextInfo" ? m.message.buttonsResponseMessage?.selectedBut
         const isMedia = /image|video|sticker|audio/.test(mime);
 
         const groupMetadata = isGroup ? await client.groupMetadata(m.chat).catch((e) => {}) : "";
-        const groupOwner = isGroup ? groupMetadata.owner : "";
         const groupName = m.isGroup ? groupMetadata.subject : "";
         const participants = isGroup ? await groupMetadata.participants : "";
         const groupAdmins = isGroup ? await participants.filter((v) => v.admin !== null).map((v) => v.id) : "";
