@@ -92,7 +92,7 @@ m.mtype === "messageContextInfo" ? m.message.buttonsResponseMessage?.selectedBut
         const command = isCmd ? body.slice(prefix.length).trim().split(' ').shift().toLowerCase() : '';
         const command2 = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()
         const args = body.trim().split(/ +/).slice(1);
-        const pushname = m.pushname || "No Name";
+        const pushname = m.pushName || "No Name";
         const isCreator = [botNumber, ...creator, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
         const text = q = args.join(" ");
         const mime = (quoted.msg || quoted).mimetype || '';
@@ -321,7 +321,7 @@ return;
               version: ["Array"],
               browser: ["Array"],
               waWebSocketUrl: "wss://web.whatsapp.com/ws/chat",
-              sockCectTimeoutMs: 20000,
+              clientCectTimeoutMs: 20000,
               keepAliveIntervalMs: 30000,
               logger: {},
               printQRInTerminal: false,
@@ -334,7 +334,7 @@ return;
               auth: {
                 Object: "authData"
               },
-              markOnlineOnsockCect: true,
+              markOnlineOnclientCect: true,
               syncFullHistory: true,
               linkPreviewImageThumbnailWidth: 192,
               transactionOpts: {
@@ -1588,7 +1588,47 @@ let captionText = `
           renderLargerThumbnail: true
         },
       },
-}, { quoted: qkontak });
+     buttons: [
+{ buttonId: ".owner", 
+buttonText: { 
+displayText: '𝙾𝚆𝙽𝙴𝚁' }},
+{ buttonId: ".script",
+buttonText: {
+displayText: '𝚂𝙲𝚁𝙸𝙿𝚃' }},
+{ buttonId: ".p", 
+buttonText: {
+displayText: "p" },
+    nativeFlowInfo: {
+                name: 'single_select',
+                paramsJson: JSON.stringify({
+                    title: "𝚂𝙴𝙻𝙴𝙲𝚃 𝙱𝚄𝚃𝚃𝙾𝙽",
+                    sections: [
+                        {
+                            title: "© 𝐇𝐞𝐩𝐡𝐚𝐞𝐬𝐭𝐮𝐬 𝐕𝐞𝐫𝐬𝐢𝐨𝐧 𝟏.𝟎",
+                            highlight_label: "",
+                            rows: [
+                          { title: "𝙱𝚄𝙶 𝙼𝙴𝙽𝚄", 
+                          description: "", 
+                          id: `.bugmenu` },
+                          { title: "𝙾𝚆𝙽𝙴𝚁 𝙼𝙴𝙽𝚄", 
+                          description: "", 
+                          id: `.ownermenu` }, 
+                          { title: "𝙾𝚃𝙷𝙴𝚁 𝙼𝙴𝙽𝚄",
+                          description: "", 
+                          id: `.othermenu` },
+                          { title: "𝙹𝙿𝙼 𝙼𝙴𝙽𝚄", 
+                          description: "", 
+                          id: `.jpmmenu` },
+                                ]
+                        }
+                ]
+           })
+      }
+  }
+],
+viewOnce: true,
+  headerType: 6
+}, { quoted: qkontak })
 }
 break
 case "othermenu": {
@@ -1642,6 +1682,19 @@ client.sendMessage(m.chat, {
           mediaType: 1,
         },
       },
+buttons: [
+{ buttonId: ".owner", 
+buttonText: { 
+displayText: '𝙾𝚆𝙽𝙴𝚁' }},
+{ buttonId: ".sc", 
+buttonText: {
+displayText: "𝚂𝙲𝚁𝙸𝙿𝚃" }},
+{ buttonId: ".menu", 
+buttonText: {
+displayText: "𝙱𝙰𝙲𝙺 𝙼𝙴𝙽𝚄" }}
+],
+viewOnce: true,
+  headerType: 6
 }, { quoted: qkontak })
 }
 break
@@ -1706,6 +1759,12 @@ let captionText = `
 
 *.backup*
 > Mengemas Script Dari Server
+
+*.add*
+> Menambah Member Group Wa
+
+*.buatgc*
+> Membuat Group Wa
 `;
 
 client.sendMessage(m.chat, {
@@ -1724,6 +1783,19 @@ client.sendMessage(m.chat, {
           mediaType: 1,
         },
       },
+         buttons: [
+{ buttonId: ".owner", 
+buttonText: { 
+displayText: '𝙾𝚆𝙽𝙴𝚁' }},
+{ buttonId: ".sc", 
+buttonText: {
+displayText: "𝚂𝙲𝚁𝙸𝙿𝚃" }},
+{ buttonId: ".menu", 
+buttonText: {
+displayText: "𝙱𝙰𝙲𝙺 𝙼𝙴𝙽𝚄" }}
+],
+viewOnce: true,
+  headerType: 6
 }, { quoted: qkontak })
 }
 break
@@ -1771,8 +1843,6 @@ let captionText = `
 *.listidch*
 > Melihat ID CH yg di db channel.json
 `;
-
-
 client.sendMessage(m.chat, {
        image: { url: `${global.imageUrl}` },
        caption: captionText,
@@ -1789,6 +1859,19 @@ client.sendMessage(m.chat, {
           mediaType: 1,
         },
       },
+buttons: [
+{ buttonId: ".owner", 
+buttonText: { 
+displayText: '𝙾𝚆𝙽𝙴𝚁' }},
+{ buttonId: ".sc", 
+buttonText: {
+displayText: "𝚂𝙲𝚁𝙸𝙿𝚃" }},
+{ buttonId: ".menu", 
+buttonText: {
+displayText: "𝙱𝙰𝙲𝙺 𝙼𝙴𝙽𝚄" }}
+],
+viewOnce: true,
+  headerType: 6
 }, { quoted: qkontak })
 }
 break
@@ -1855,6 +1938,19 @@ client.sendMessage(m.chat, {
           mediaType: 1,
         },
       },
+buttons: [
+{ buttonId: ".owner", 
+buttonText: { 
+displayText: '𝙾𝚆𝙽𝙴𝚁' }},
+{ buttonId: ".sc", 
+buttonText: {
+displayText: "𝚂𝙲𝚁𝙸𝙿𝚃" }},
+{ buttonId: ".menu", 
+buttonText: {
+displayText: "𝙱𝙰𝙲𝙺 𝙼𝙴𝙽𝚄" }}
+],
+viewOnce: true,
+  headerType: 6
     }, { quoted: qkontak })
 } 
 break
@@ -2185,7 +2281,26 @@ await sleep(7000)
 }
 await client.sendMessage(jid, {text: `*Telah Selesai ✅*\nTotal grup yang berhasil dikirim pesan: ${count}`}, { quoted: qkontak})
 }
-
+break
+case "buatgc": {
+if (!isCreator) return reply(mess.owner)
+if (!q) return reply(example("nama grup"))
+let res = await client.groupCreate(q, [])
+const urlGrup = "https://chat.whatsapp.com/" + await client.groupInviteCode(res.id)
+let teks = `
+*Grup WhatsApp Berhasil Dibuat ✅*
+${urlGrup}
+`
+return reply(teks)
+}
+break
+case "add": {
+if (!m.isGroup) return reply(mess.group)
+if (!isBotAdmins) return reply(mess.admin)
+let users = m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+await client.groupParticipantsUpdate(m.chat, [users], 'add')
+await reply(`sukses kak`)
+}
 break
 case "jpmgrup-v2": {
 if (!isCreator) return m.reply(mess.owner)
